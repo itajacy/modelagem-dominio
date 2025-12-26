@@ -13,8 +13,7 @@
         <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
-// plugin configuration for JaCoCo code coverage
-// plugin para cobertura de testes JaCoCo
+
     <build>
         <plugins>
             <plugin>
@@ -40,7 +39,7 @@
     </build>
 
 
-    // Define JUnit Jupiter dependency for testing
+  
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
