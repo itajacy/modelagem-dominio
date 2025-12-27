@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: dev.formacao.modelagem.anemica.UsuarioTest
 -------------------------------------------------------------------------------
-Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.126 s -- in dev.formacao.modelagem.anemica.UsuarioTest
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.085 s -- in dev.formacao.modelagem.anemica.UsuarioTest
