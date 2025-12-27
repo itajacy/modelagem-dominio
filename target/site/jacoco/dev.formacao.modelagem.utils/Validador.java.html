@@ -9,10 +9,10 @@ public class Validador {
 <span class="fc bfc" id="L9" title="All 2 branches covered.">        return objeto != null ? null : msgErro;</span>
     }
     public static String naoVazio(String valor, String erro) {
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        if (naoNulo(valor, erro) != null) {</span>
-<span class="nc" id="L13">            return erro;</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        if (naoNulo(valor, erro) != null) {</span>
+<span class="fc" id="L13">            return erro;</span>
         }
-<span class="nc bnc" id="L15" title="All 2 branches missed.">        return !valor.trim().isEmpty() ? null : erro;</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        return !valor.trim().isEmpty() ? null : erro;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

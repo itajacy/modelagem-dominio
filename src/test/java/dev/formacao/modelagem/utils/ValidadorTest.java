@@ -23,5 +23,21 @@ public class ValidadorTest {
     void deveRetornarMensagemQuandoObjetoForNulo() {
        assertEquals(Validador.naoNulo(null, MSG_ERRO), MSG_ERRO);
     }
+    
+    @Test
+    void deveRetornarNuloQuandoStringForValida() {
+        assertNull(Validador.naoVazio("Texto válido", MSG_ERRO));
+    }
+
+    @Test
+    void deveRetornarMensagemQuandoStringForNula() {
+        assertEquals(Validador.naoVazio(null,   MSG_ERRO), MSG_ERRO);
+    }
+
+    @Test
+    void deveRetornarMensagemQuandoStringForVazia() {
+        assertEquals(Validador.naoVazio("", MSG_ERRO), MSG_ERRO);
+        assertEquals(Validador.naoVazio("   ", MSG_ERRO), MSG_ERRO);
+    }
 
 }

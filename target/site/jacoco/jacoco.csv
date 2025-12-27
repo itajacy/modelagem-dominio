@@ -1,3 +1,3 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-modelagem-dominio,dev.formacao.modelagem.utils,Validador,14,6,4,2,3,1,3,2,1,1
+modelagem-dominio,dev.formacao.modelagem.utils,Validador,0,20,0,6,0,4,0,5,0,2
 modelagem-dominio,dev.formacao.modelagem.anemica,Usuario,0,72,0,12,0,27,0,17,0,11
