@@ -4,6 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.regex.Pattern;
+
 
 public class ValidadorTest {
 
@@ -53,7 +57,7 @@ public class ValidadorTest {
 
     @Test
     void deveRetornarMensagemQuandoObjetoForNulo() {
-       assertEquals(Validador.naoNulo(null, MSG_ERRO), MSG_ERRO);
+       assertEquals(MSG_ERRO,Validador.naoNulo(null, MSG_ERRO));
     }
     
     @Test
@@ -63,13 +67,48 @@ public class ValidadorTest {
 
     @Test
     void deveRetornarMensagemQuandoStringForNula() {
-        assertEquals(Validador.naoVazio(null,   MSG_ERRO), MSG_ERRO);
+        assertEquals(MSG_ERRO, Validador.naoVazio(null, MSG_ERRO));
     }
 
     @Test
     void deveRetornarMensagemQuandoStringForVazia() {
-        assertEquals(Validador.naoVazio("", MSG_ERRO), MSG_ERRO);
-        assertEquals(Validador.naoVazio("   ", MSG_ERRO), MSG_ERRO);
+        assertEquals( MSG_ERRO, Validador.naoVazio("", MSG_ERRO));
+        assertEquals( MSG_ERRO, Validador.naoVazio("   ", MSG_ERRO));
+    }
+
+    @Test
+    void deveValidarTamanhoMenorQueParaString() {
+        assertNull(Validador.tamanhoMenorQue("Teste", 10, MSG_ERRO));
+        assertEquals(MSG_ERRO, Validador.tamanhoMenorQue("TesteMuitoLongo", 10, MSG_ERRO));
+        assertEquals(MSG_ERRO, Validador.tamanhoMenorQue((CharSequence)null, 10, MSG_ERRO));
+    }
+
+    @Test
+    void deveValidarTamanhoMenorQueParaColecao() {
+        assertNull(Validador.tamanhoMenorQue((Collection<?>)null, 5, MSG_ERRO));
+        assertNull(Validador.tamanhoMenorQue(List.of(1, 2, 3), 5, MSG_ERRO));
+        assertEquals(MSG_ERRO, Validador.tamanhoMenorQue(List.of(1, 2, 3, 4, 5, 6), 5, MSG_ERRO));
+    }
+
+    @Test
+    void deveValidarTamanhoMaiorQueParaString() {
+        assertNull(Validador.tamanhoMaiorQue("TextoLongo", 5, MSG_ERRO));
+        assertEquals(MSG_ERRO, Validador.tamanhoMaiorQue("Curto", 10, MSG_ERRO));
+        assertEquals(MSG_ERRO, Validador.tamanhoMaiorQue((CharSequence)null, 5, MSG_ERRO));
+    }
+
+    @Test
+    void deveValidarTamanhoMaiorQueParaColecao() {
+        assertEquals(MSG_ERRO, Validador.tamanhoMaiorQue((Collection<?>)null, 2, MSG_ERRO));
+        assertEquals(MSG_ERRO, Validador.tamanhoMaiorQue(List.of(1), 2, MSG_ERRO));
+        assertNull(Validador.tamanhoMaiorQue(List.of(1, 2, 3), 2, MSG_ERRO));
+    }
+
+    @Test
+    void deveValidarRegex() { 
+        assertNull(Validador.regex("abc123", Pattern.compile("^[a-z]+\\d+$"), MSG_ERRO));
+        assertEquals(MSG_ERRO, Validador.regex("123abc", Pattern.compile("^[a-z]+\\d+$"), MSG_ERRO));
+        assertEquals(MSG_ERRO, Validador.regex(null, Pattern.compile("^[a-z]+\\d+$"), MSG_ERRO));
     }
 
  

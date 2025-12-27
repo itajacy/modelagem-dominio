@@ -43,7 +43,10 @@ public class Validador {
     
 
     public static String tamanhoMenorQue(Collection<?> valor, int tamanhoMaximo, String erro) {
-        return( valor != null && valor.size() < tamanhoMaximo) ? null : erro;
+        if (valor == null) {
+            return null;
+        }
+        return (valor.size() < tamanhoMaximo) ? null : erro;
     }
 
     public static String tamanhoMaiorQue(CharSequence valor, int tamanhoMinimo, String erro) {

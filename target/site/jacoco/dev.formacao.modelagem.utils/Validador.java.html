@@ -37,28 +37,31 @@ public class Validador {
     }
 
     public static String tamanhoMenorQue(CharSequence valor, int tamanhoMaximo, String erro) {
-<span class="nc bnc" id="L40" title="All 4 branches missed.">        return( valor != null &amp;&amp; valor.length() &lt; tamanhoMaximo) ? null : erro;</span>
+<span class="fc bfc" id="L40" title="All 4 branches covered.">        return( valor != null &amp;&amp; valor.length() &lt; tamanhoMaximo) ? null : erro;</span>
     }
 
     
 
     public static String tamanhoMenorQue(Collection&lt;?&gt; valor, int tamanhoMaximo, String erro) {
-<span class="nc bnc" id="L46" title="All 4 branches missed.">        return( valor != null &amp;&amp; valor.size() &lt; tamanhoMaximo) ? null : erro;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (valor == null) {</span>
+<span class="fc" id="L47">            return null;</span>
+        }
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        return (valor.size() &lt; tamanhoMaximo) ? null : erro;</span>
     }
 
     public static String tamanhoMaiorQue(CharSequence valor, int tamanhoMinimo, String erro) {
-<span class="nc bnc" id="L50" title="All 4 branches missed.">        return( valor != null &amp;&amp; valor.length() &gt; tamanhoMinimo) ? null : erro;</span>
+<span class="fc bfc" id="L53" title="All 4 branches covered.">        return( valor != null &amp;&amp; valor.length() &gt; tamanhoMinimo) ? null : erro;</span>
     }
 
     public static String tamanhoMaiorQue(Collection&lt;?&gt; valor, int tamanhoMinimo, String erro) {
-<span class="nc bnc" id="L54" title="All 4 branches missed.">        return( valor != null &amp;&amp; valor.size() &gt; tamanhoMinimo) ? null : erro;</span>
+<span class="fc bfc" id="L57" title="All 4 branches covered.">        return( valor != null &amp;&amp; valor.size() &gt; tamanhoMinimo) ? null : erro;</span>
     }
 
     public static String regex(String valor, Pattern regex, String erro) {
-<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (valor == null) {</span>
-<span class="nc" id="L59">            return erro;</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (valor == null) {</span>
+<span class="fc" id="L62">            return erro;</span>
         }
-<span class="nc bnc" id="L61" title="All 2 branches missed.">        return regex.matcher(valor).find() ? null : erro;</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        return regex.matcher(valor).find() ? null : erro;</span>
     }
 
 }
