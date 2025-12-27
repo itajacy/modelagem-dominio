@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Validador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">modelagem-dominio</a> &gt; <a href="index.source.html" class="el_package">dev.formacao.modelagem.utils</a> &gt; <span class="el_source">Validador.java</span></div><h1>Validador.java</h1><pre class="source lang-java linenums">package dev.formacao.modelagem.utils;
 
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class Validador {
 
@@ -10,30 +12,54 @@ public class Validador {
     }
 
     public static List&lt;String&gt; combinar(String... erros) {
-<span class="fc bfc" id="L13" title="All 4 branches covered.">        if (erros == null || erros.length == 0) {</span>
-<span class="fc" id="L14">            return List.of();</span>
+<span class="fc bfc" id="L15" title="All 4 branches covered.">        if (erros == null || erros.length == 0) {</span>
+<span class="fc" id="L16">            return List.of();</span>
         }
 
-<span class="fc" id="L17">        Set&lt;String&gt; unicos = new LinkedHashSet&lt;&gt;();</span>
-<span class="fc bfc" id="L18" title="All 2 branches covered.">        for (String erro : erros) {</span>
-<span class="fc bfc" id="L19" title="All 4 branches covered.">            if (erro != null &amp;&amp; !erro.isBlank()) {</span>
-<span class="fc" id="L20">                unicos.add(erro);</span>
+<span class="fc" id="L19">        Set&lt;String&gt; unicos = new LinkedHashSet&lt;&gt;();</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        for (String erro : erros) {</span>
+<span class="fc bfc" id="L21" title="All 4 branches covered.">            if (erro != null &amp;&amp; !erro.isBlank()) {</span>
+<span class="fc" id="L22">                unicos.add(erro);</span>
             }
         }
-<span class="fc bfc" id="L23" title="All 2 branches covered.">        return unicos.isEmpty() ? List.of() : List.copyOf(unicos);</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        return unicos.isEmpty() ? List.of() : List.copyOf(unicos);</span>
     }
 
     public static String naoNulo(Object objeto, String erro) {
-<span class="fc bfc" id="L27" title="All 2 branches covered.">        return objeto != null ? null : erro;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        return objeto != null ? null : erro;</span>
     }
 
     public static String naoVazio(String valor, String erro) {
-<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (naoNulo(valor, erro) != null) {</span>
-<span class="fc" id="L32">            return erro;</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if (naoNulo(valor, erro) != null) {</span>
+<span class="fc" id="L34">            return erro;</span>
         }
-<span class="fc bfc" id="L34" title="All 2 branches covered.">        return !valor.trim().isEmpty() ? null : erro;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        return !valor.trim().isEmpty() ? null : erro;</span>
     }
 
+    public static String tamanhoMenorQue(CharSequence valor, int tamanhoMaximo, String erro) {
+<span class="nc bnc" id="L40" title="All 4 branches missed.">        return( valor != null &amp;&amp; valor.length() &lt; tamanhoMaximo) ? null : erro;</span>
+    }
+
+    
+
+    public static String tamanhoMenorQue(Collection&lt;?&gt; valor, int tamanhoMaximo, String erro) {
+<span class="nc bnc" id="L46" title="All 4 branches missed.">        return( valor != null &amp;&amp; valor.size() &lt; tamanhoMaximo) ? null : erro;</span>
+    }
+
+    public static String tamanhoMaiorQue(CharSequence valor, int tamanhoMinimo, String erro) {
+<span class="nc bnc" id="L50" title="All 4 branches missed.">        return( valor != null &amp;&amp; valor.length() &gt; tamanhoMinimo) ? null : erro;</span>
+    }
+
+    public static String tamanhoMaiorQue(Collection&lt;?&gt; valor, int tamanhoMinimo, String erro) {
+<span class="nc bnc" id="L54" title="All 4 branches missed.">        return( valor != null &amp;&amp; valor.size() &gt; tamanhoMinimo) ? null : erro;</span>
+    }
+
+    public static String regex(String valor, Pattern regex, String erro) {
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (valor == null) {</span>
+<span class="nc" id="L59">            return erro;</span>
+        }
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        return regex.matcher(valor).find() ? null : erro;</span>
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
