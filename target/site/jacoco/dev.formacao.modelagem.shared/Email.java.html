@@ -17,7 +17,7 @@ public record Email(String valor) {
 
  
 <span class="fc" id="L19">    private static final Pattern EMAIL_REGEX = Pattern.compile(&quot;^(([^&lt;&gt;()\\[\\]\\\\.,;:\\s@\&quot;]+(\\.[^&lt;&gt;()\\[\\]\\\\.,;:\\s@\&quot;]+)*)|(\&quot;.+\&quot;))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$&quot;,</span>
-<span class="fc" id="L20">            Pattern.CASE_INSENSITIVE);</span>
+            Pattern.CASE_INSENSITIVE);
 
 <span class="fc" id="L22">    public Email {</span>
 <span class="fc bfc" id="L23" title="All 2 branches covered.">       valor = (valor == null) ? null : valor.trim().toLowerCase();</span>

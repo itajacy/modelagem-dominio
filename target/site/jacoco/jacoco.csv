@@ -2,4 +2,5 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 modelagem-dominio,dev.formacao.modelagem.auth.usuario,Usuario,3,0,0,0,1,0,1,0,1,0
 modelagem-dominio,dev.formacao.modelagem.utils,Validador,0,119,0,38,0,20,0,27,0,8
 modelagem-dominio,dev.formacao.modelagem.anemica,Usuario,0,72,0,12,0,27,0,17,0,11
-modelagem-dominio,dev.formacao.modelagem.shared,Email,0,121,0,14,0,27,0,13,0,6
+modelagem-dominio,dev.formacao.modelagem.shared,Email,0,121,0,14,0,26,0,13,0,6
+modelagem-dominio,dev.formacao.modelagem.shared,NomePessoa,159,0,8,0,31,0,13,0,9,0

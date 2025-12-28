@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NomePessoa.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">modelagem-dominio</a> &gt; <a href="index.source.html" class="el_package">dev.formacao.modelagem.shared</a> &gt; <span class="el_source">NomePessoa.java</span></div><h1>NomePessoa.java</h1><pre class="source lang-java linenums">package dev.formacao.modelagem.shared;
+
+import java.util.List;
+import java.util.regex.Pattern;
+
+import dev.formacao.modelagem.utils.Validador;
+
+public record NomePessoa(String valor) {
+
+    public static final String NOME_NULO = &quot;NOME_NULO&quot;;
+    public static final String NOME_VAZIO = &quot;NOME_VAZIO&quot;;
+    public static final String NOME_PEQUENO = &quot;NOME_PEQUENO&quot;;
+    public static final String NOME_GRANDE = &quot;NOME_GRANDE&quot;;
+    public static final String NOME_SEM_SOBRENOME = &quot;NOME_SEM_SOBRENOME&quot;;
+    public static final String NOME_CARACTERES_INVALIDOS = &quot;NOME_CARACTERES_INVALIDOS&quot;;
+
+<span class="nc" id="L17">    private static final Pattern NOME_REGEX = Pattern.compile(&quot;^[a-zA-ZÀ-ú'\\-\\.\\s]+$&quot;);</span>
+
+<span class="nc" id="L19">    public NomePessoa {</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        valor = (valor == null) ? null : valor.trim().replaceAll(&quot;\\s+&quot;, &quot; &quot;); // substituindo multiplos espaços e tabs,</span>
+                                                                               // por um espaço simples
+
+<span class="nc" id="L23">        String segundaParte = segundaParte(valor);</span>
+
+<span class="nc" id="L25">        List&lt;String&gt; erros = Validador.combinar(</span>
+<span class="nc" id="L26">                Validador.naoNulo(valor, NOME_NULO),</span>
+<span class="nc" id="L27">                Validador.naoVazio(valor, NOME_VAZIO),</span>
+<span class="nc" id="L28">                Validador.tamanhoMaiorQue(valor, 4, NOME_PEQUENO),</span>
+<span class="nc" id="L29">                Validador.tamanhoMenorQue(valor, 121, NOME_GRANDE),</span>
+<span class="nc" id="L30">                Validador.naoVazio(segundaParte, NOME_SEM_SOBRENOME),</span>
+<span class="nc" id="L31">                Validador.regex(valor, NOME_REGEX, NOME_CARACTERES_INVALIDOS)</span>
+        );
+
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (!erros.isEmpty() ) {</span>
+<span class="nc" id="L35">            throw new IllegalArgumentException(String.join(&quot;, &quot;, erros));</span>
+        }
+<span class="nc" id="L37">    }</span>
+
+    public String completo() {
+<span class="nc" id="L40">        return valor;</span>
+    }   
+
+    public String primeiroNome() {
+<span class="nc" id="L44">        return valor.split(&quot; &quot;)[0];</span>
+    }
+
+    public String[] sobrenomes() {
+<span class="nc" id="L48">        String[] partes = valor.split(&quot; &quot;);</span>
+<span class="nc" id="L49">        String[] sobrenomes = new String[partes.length - 1];</span>
+<span class="nc" id="L50">        System.arraycopy(partes, 1, sobrenomes, 0, sobrenomes.length);</span>
+<span class="nc" id="L51">        return sobrenomes;</span>
+    }
+
+    public String ultimoSobrenome() {
+<span class="nc" id="L55">        String[] partes = valor.split(&quot; &quot;);</span>
+<span class="nc" id="L56">        return partes[partes.length - 1];</span>
+    }
+
+    public String iniciais() {
+<span class="nc" id="L60">       String a = primeiraLetra(primeiroNome());</span>
+<span class="nc" id="L61">         String b = primeiraLetra(ultimoSobrenome());</span>
+<span class="nc" id="L62">         return (a + b).toUpperCase();</span>
+    }
+
+    private static String primeiraLetra(String s) {
+<span class="nc" id="L66">        int cp = s.codePointAt(0);</span>
+<span class="nc" id="L67">        return new String(Character.toChars(cp));</span>
+    }
+
+    private static String segundaParte(String nome) {
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        if (nome == null) {</span>
+<span class="nc" id="L72">            return null;</span>
+        }
+
+<span class="nc" id="L75">        String[] partes = nome.split(&quot; &quot;);</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        return (partes.length &gt;= 2) ? partes[1] : null; // retira o primeiro nome e retorna a segunda parte</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
