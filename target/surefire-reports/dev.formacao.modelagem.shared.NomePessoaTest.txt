@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: dev.formacao.modelagem.shared.NomePessoaTest
+-------------------------------------------------------------------------------
+Tests run: 15, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.050 s -- in dev.formacao.modelagem.shared.NomePessoaTest
