@@ -15,8 +15,8 @@ public record Email(String valor) {
     public static final String EMAIL_DOMINIO_GRANDE = "EMAIL_DOMINIO_GRANDE";  
 
 
-    // private static final Pattern EMAIL_REGEX = Pattern.compile("^(([^<>()[\\]\\\\.,;:\\s@\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
-    private static final Pattern EMAIL_REGEX = Pattern.compile("^(([^<>()[\\]\\\\.,;:\\s@\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@(([^<>()[\\]\\\\.,;:\\s@\"]+\\.)+[^<>()[\\]\\\\.,;:\\s@\"]{2,})$",
+ 
+    private static final Pattern EMAIL_REGEX = Pattern.compile("^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$",
             Pattern.CASE_INSENSITIVE);
 
     public Email {
@@ -33,7 +33,8 @@ public record Email(String valor) {
             Validador.tamanhoMenorQue(dominio, 256, EMAIL_DOMINIO_GRANDE)
        );
 
-       if (erros != null && !erros.isEmpty()) {
+    //    if (erros != null && !erros.isEmpty()) {
+       if (!erros.isEmpty()) {
            throw new IllegalArgumentException(String.join(", ", erros));
        }
     }

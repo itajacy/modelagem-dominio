@@ -15,55 +15,56 @@ public record Email(String valor) {
     public static final String EMAIL_DOMINIO_GRANDE = &quot;EMAIL_DOMINIO_GRANDE&quot;;  
 
 
-    // private static final Pattern EMAIL_REGEX = Pattern.compile(&quot;^(([^&lt;&gt;()[\\]\\\\.,;:\\s@\&quot;]+(\\.[^&lt;&gt;()[\\]\\\\.,;:\\s@\&quot;]+)*)|(\&quot;.+\&quot;))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$&quot;);
-<span class="nc" id="L19">    private static final Pattern EMAIL_REGEX = Pattern.compile(&quot;^(([^&lt;&gt;()[\\]\\\\.,;:\\s@\&quot;]+(\\.[^&lt;&gt;()[\\]\\\\.,;:\\s@\&quot;]+)*)|(\&quot;.+\&quot;))@(([^&lt;&gt;()[\\]\\\\.,;:\\s@\&quot;]+\\.)+[^&lt;&gt;()[\\]\\\\.,;:\\s@\&quot;]{2,})$&quot;,</span>
-            Pattern.CASE_INSENSITIVE);
+ 
+<span class="fc" id="L19">    private static final Pattern EMAIL_REGEX = Pattern.compile(&quot;^(([^&lt;&gt;()\\[\\]\\\\.,;:\\s@\&quot;]+(\\.[^&lt;&gt;()\\[\\]\\\\.,;:\\s@\&quot;]+)*)|(\&quot;.+\&quot;))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$&quot;,</span>
+<span class="fc" id="L20">            Pattern.CASE_INSENSITIVE);</span>
 
-<span class="nc" id="L22">    public Email {</span>
-<span class="nc bnc" id="L23" title="All 2 branches missed.">       valor = (valor == null) ? null : valor.trim().toLowerCase();</span>
+<span class="fc" id="L22">    public Email {</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">       valor = (valor == null) ? null : valor.trim().toLowerCase();</span>
 
-<span class="nc" id="L25">       String local = extrairLocal(valor);</span>
-<span class="nc" id="L26">       String dominio = extrairDominio(valor);  </span>
+<span class="fc" id="L25">       String local = extrairLocal(valor);</span>
+<span class="fc" id="L26">       String dominio = extrairDominio(valor);  </span>
 
-<span class="nc" id="L28">       List&lt;String&gt; erros = Validador.combinar(</span>
-<span class="nc" id="L29">            Validador.naoNulo(valor, EMAIL_NULO),</span>
-<span class="nc" id="L30">            Validador.naoVazio(valor, EMAIL_VAZIO),</span>
-<span class="nc" id="L31">            Validador.regex(valor, EMAIL_REGEX, EMAIL_INVALIDO),</span>
-<span class="nc" id="L32">            Validador.tamanhoMenorQue(local, 65, EMAIL_LOCAL_GRANDE),</span>
-<span class="nc" id="L33">            Validador.tamanhoMenorQue(dominio, 256, EMAIL_DOMINIO_GRANDE)</span>
+<span class="fc" id="L28">       List&lt;String&gt; erros = Validador.combinar(</span>
+<span class="fc" id="L29">            Validador.naoNulo(valor, EMAIL_NULO),</span>
+<span class="fc" id="L30">            Validador.naoVazio(valor, EMAIL_VAZIO),</span>
+<span class="fc" id="L31">            Validador.regex(valor, EMAIL_REGEX, EMAIL_INVALIDO),</span>
+<span class="fc" id="L32">            Validador.tamanhoMenorQue(local, 65, EMAIL_LOCAL_GRANDE),</span>
+<span class="fc" id="L33">            Validador.tamanhoMenorQue(dominio, 256, EMAIL_DOMINIO_GRANDE)</span>
        );
 
-<span class="nc bnc" id="L36" title="All 4 branches missed.">       if (erros != null &amp;&amp; !erros.isEmpty()) {</span>
-<span class="nc" id="L37">           throw new IllegalArgumentException(String.join(&quot;, &quot;, erros));</span>
+    //    if (erros != null &amp;&amp; !erros.isEmpty()) {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">       if (!erros.isEmpty()) {</span>
+<span class="fc" id="L38">           throw new IllegalArgumentException(String.join(&quot;, &quot;, erros));</span>
        }
-<span class="nc" id="L39">    }</span>
+<span class="fc" id="L40">    }</span>
 
     public String local() {
-<span class="nc" id="L42">        return extrairLocal(valor);</span>
+<span class="fc" id="L43">        return extrairLocal(valor);</span>
     }
 
     public String dominio() {
-<span class="nc" id="L46">        return extrairDominio(valor);</span>
+<span class="fc" id="L47">        return extrairDominio(valor);</span>
     }
 
     private static String extrairLocal(String email) {
-<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (email == null) {</span>
-<span class="nc" id="L51">            return null;</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (email == null) {</span>
+<span class="fc" id="L52">            return null;</span>
         }
 
-<span class="nc" id="L54">        int idx = email.indexOf('@');</span>
-<span class="nc bnc" id="L55" title="All 2 branches missed.">        if (idx &lt;= 0)  return email;</span>
-<span class="nc" id="L56">        return email.substring(0, idx);</span>
+<span class="fc" id="L55">        int idx = email.indexOf('@');</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (idx &lt;= 0)  return email;</span>
+<span class="fc" id="L57">        return email.substring(0, idx);</span>
     }
 
     private static String extrairDominio(String email) {
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (email == null) {</span>
-<span class="nc" id="L61">            return null;</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (email == null) {</span>
+<span class="fc" id="L62">            return null;</span>
         }
 
-<span class="nc" id="L64">        int idx = email.indexOf('@');</span>
-<span class="nc bnc" id="L65" title="All 4 branches missed.">        if (idx &lt; 0 || idx == email.length() - 1)  return &quot;&quot;;</span>
-<span class="nc" id="L66">        return email.substring(idx + 1);</span>
+<span class="fc" id="L65">        int idx = email.indexOf('@');</span>
+<span class="fc bfc" id="L66" title="All 4 branches covered.">        if (idx &lt; 0 || idx == email.length() - 1)  return &quot;&quot;;</span>
+<span class="fc" id="L67">        return email.substring(idx + 1);</span>
     }
 
 }
